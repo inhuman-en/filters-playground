@@ -1,0 +1,3 @@
+- build filters menu (state->props stuff)
+- add default image
+- add cmp for each filter settings
