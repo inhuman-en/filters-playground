@@ -10,21 +10,10 @@ export default class FilterMenu extends React.Component {
         return (
             <section className="filters">
                     <ul>
-                        <li>
-                            <Link to="f/filter1">filter1</Link>
-                        </li>
-                        <li>
-                            <Link to="f/filter2">filter2</Link>
-                        </li>
-                        <li>
-                            <Link to="f/filter3">filter3</Link>
-                        </li>
-                        <li>
-                            <Link to="f/filter4">filter4</Link>
-                        </li>
-                        <li>
-                            <Link to="f/filter5">filter5</Link>
-                        </li>
+                        {this.props.filterList
+                            .map((f, i, arr) => <li key={i}>
+                                    <Link to={ {pathname: `f/${f.filterFn}`, state: { filterConfig: f } } }>{f.displayName}</Link>
+                                </li>)}
                     </ul>
                 </section>
         );

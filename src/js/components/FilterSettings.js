@@ -6,9 +6,13 @@ export default class FilterSettings extends React.Component {
   }
 
   render() {
+    let FilterComponent = this.props.location.state.filterConfig.component;
+    // let Instance = require("filters/"+FilterComponent);
+
     return (
       <div>
-        Filter Settings!
+        {/*<Instance/>*/}
+        Filter Settings for {this.props.params.filterName} cmp - {FilterComponent}
       </div>
     );
   }
