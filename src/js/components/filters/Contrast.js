@@ -1,14 +1,25 @@
 import React from "react";
 
 export default class Contrast extends React.Component {
-  constructor() {
-    super();
+  get defaultValue () {
+    return 100;
+  }
+
+  onPercentChange (e) {
+    this.props.onFilterChange({
+        filterType: "contrast",
+        value: `${e.target.value === "" ? this.defaultValue : e.target.value}%`
+    });
+  }
+
+  parsePercent () {
+    return parseInt(this.props.filterData.value === "" ? this.defaultValue : this.props.filterData.value);
   }
 
   render() {
     return (
       <div>
-        Contrast settings
+        <span>Amount, %:</span> <input type="number" min="0" value={this.parsePercent()} onChange={this.onPercentChange.bind(this)}/>
       </div>
     );
   }

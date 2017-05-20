@@ -1,5 +1,12 @@
 .main {
-    background: {
-        color: #fafafa
+    background {
+        color: #fafafa;
     }
 }
+
+.filterlink-active {
+    & a {
+        color: red;
+    }
+}
+       

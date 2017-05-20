@@ -1,3 +1,6 @@
-- require filter component dynamically (require.ensure?)
-- add default image
-- add cmp for each filter settings
+- styles
+- server side:
+- - image upload
+- - svg-based filters support
+- PWA
+
