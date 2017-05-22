@@ -1,6 +1,9 @@
-- styles
+- config nodemon so it restarts server as server files changed and run webpack in case of client edits
 - server side:
 - - image upload
 - - svg-based filters support
+
+- styles
+
 - PWA
 

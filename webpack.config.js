@@ -9,11 +9,11 @@ let extractSASS = new ExtractTextPlugin('/styles-build.css');
 let path = require('path');
 
 module.exports = {
-  context: path.join(__dirname, "src"),
+  context: path.join(__dirname),
   devtool: debug
     ? "inline-sourcemap"
     : null,
-  entry: "./js/main.js",
+  entry: "./client/src/js/main.js",
   module: {
     loaders: [
       {
@@ -41,7 +41,7 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + "/build/",
+    path: __dirname + "/public/",
     publicPath: "/",
     filename: "scripts.min.js"
   },
