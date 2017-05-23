@@ -7,6 +7,7 @@ import "../sass/main.scss";
 import Root from "./components/Root";
 import reducer from "./reducer";
 
+
 window.onload = function () {
 
     let store = createStore(reducer);
