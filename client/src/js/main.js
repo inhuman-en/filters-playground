@@ -1,19 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
+
+import filterStore from "./filterStore";
+import Root from "./components/Root";
 
 import "../sass/main.scss";
 
-import Root from "./components/Root";
-import reducer from "./reducer";
-
-
 window.onload = function () {
-
-    let store = createStore(reducer);
-
     ReactDOM.render(
-       <Root store={store} />,
+       <Root store={filterStore} />,
         document.getElementById('app')
     );
 }

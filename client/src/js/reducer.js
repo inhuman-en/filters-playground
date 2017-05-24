@@ -77,9 +77,32 @@ function activeFiltersReducer(state = [], action) {
                 filterType: action.filterType
             });
 
-            console.log(newActiveFilters);
-
             return newActiveFilters;
+        default:
+            return state;
+    }
+}
+
+function filterableReducer (state = {}, action) {
+    switch (action.type) {
+        case actions.FILTERABLE_UPLOAD_START:
+            return Object.assign({}, state, {
+                isUploading: true,
+                imageSrc: null,
+                errorMsg: null
+            });
+        case actions.FILTERABLE_UPLOAD_SUCCESS:
+        return Object.assign({}, state, {
+            isUploading: true,
+            imageSrc: action.imageSrc,
+            errorMsg: null
+        });
+        case actions.FILTERABLE_UPLOAD_FAILURE:
+            return Object.assign({}, state, {
+                isUploading: false,
+                imageSrc: null,
+                errorMsg: action.errorMsg
+            });
         default:
             return state;
     }
@@ -87,5 +110,6 @@ function activeFiltersReducer(state = [], action) {
 
 export default combineReducers({
     filterList: filterListReducer,
-    activeFilters: activeFiltersReducer
+    activeFilters: activeFiltersReducer,
+    filterable: filterableReducer
 });
