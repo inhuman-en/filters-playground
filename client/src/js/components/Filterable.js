@@ -4,8 +4,6 @@ import { uploadFilterable } from "../actions";
 
 import UploadForm from "./UploadForm";
 
-// import '../../resources/images/filterable.jpg';
-
 const mapFiltersTostyle = (filters) => {
     return filters.map(f => `${f.filterType}(${f.value})`)
         .join(" ");

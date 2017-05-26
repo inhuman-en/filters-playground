@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Route } from "react-router";
 import { connect } from "react-redux";
 
-import { loadFilters } from "../actions";
+import { loadFilters, getPersistedFilterable } from "../actions";
 
 import NoFilter from "./NoFilter";
 import FilterMenu from "./FilterMenu";
@@ -36,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onLoadFilters: () => {
         dispatch(loadFilters());
+        dispatch(getPersistedFilterable());
     }
   }
 }

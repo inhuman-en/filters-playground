@@ -93,7 +93,7 @@ function filterableReducer (state = {}, action) {
             });
         case actions.FILTERABLE_UPLOAD_SUCCESS:
         return Object.assign({}, state, {
-            isUploading: true,
+            isUploading: false,
             imageSrc: action.imageSrc,
             errorMsg: null
         });
@@ -102,6 +102,13 @@ function filterableReducer (state = {}, action) {
                 isUploading: false,
                 imageSrc: null,
                 errorMsg: action.errorMsg
+            });
+        case actions.FILTERABLE_GET_PERSISTED:
+           
+            return Object.assign({}, state, {
+                isUploading: false,
+                imageSrc: action.imageSrc,
+                errorMsg: null
             });
         default:
             return state;
