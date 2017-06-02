@@ -1,8 +1,4 @@
-- server side:
-- - persist filterable in localsorage
-- - svg-based filters support
-
+- how to scale/size the filterable?
 - styles
-
 - PWA
 

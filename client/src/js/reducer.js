@@ -47,13 +47,12 @@ const filterList = [
         displayName: "Saturate",
         filterType: "saturate",
         component: "Saturate"
+    },
+    {
+        displayName: "SVG",
+        filterType: "url",
+        component: "SVGUrl"
     }
-    //todo: add support with fileupload
-    // {
-    //     displayName: "SVG",
-    //     filterType: "url",
-    //     component: "SVGUrl"
-    // }
 ];
 
 function filterListReducer(state = [], action) {
@@ -78,6 +77,23 @@ function activeFiltersReducer(state = [], action) {
             });
 
             return newActiveFilters;
+        //todo: this is a duplication of a filter component logic
+        case actions.URL_FILTER_UPLOAD_SUCCESS:
+            let filters = state.filter(
+                    f => f.filterType !== "url"
+                ),
+                currentUrlFilter = state.filter(
+                    f => f.filterType === "url"
+                )[0],
+                elementId = currentUrlFilter ? currentUrlFilter.value.split("#")[1] :
+                ""
+
+            filters.push({
+                value: `${action.fileUrl}#${elementId}`,
+                filterType: "url"
+            });
+
+            return filters;
         default:
             return state;
     }
