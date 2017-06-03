@@ -1,4 +1,3 @@
-- how to scale/size the filterable?
 - styles
 - PWA
 

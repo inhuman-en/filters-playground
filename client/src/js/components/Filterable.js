@@ -31,8 +31,9 @@ class Filterable extends React.Component {
 
         return (
             <section class="filterable">
+                {/*todo: media-based img size*/}
                 {imageSrc ? 
-                <img style={{filter: this.props.cssFilter}} width="400" height="300" src={imageSrc} alt="Filter me!"/> : ""}
+                <img style={{filter: this.props.cssFilter}} width="500" src={imageSrc} alt="Filter me!"/> : ""}
                 <UploadForm onFormSubmit={this.props.onFormSubmit}/>
             </section>
         );
