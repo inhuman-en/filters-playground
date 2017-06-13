@@ -16,10 +16,12 @@ class Layout extends React.Component {
     
     render() {
         return (
-            <main>
+            <main class="container main">
                 <Filterable></Filterable>
-                <FilterMenu filterList={this.props.filterList} location={this.props.location}></FilterMenu>
-                {this.props.children}
+                <section class="filters-container" >
+                    <FilterMenu filterList={this.props.filterList} location={this.props.location}></FilterMenu>
+                    {this.props.children}
+                </section>
             </main>
             );
     }

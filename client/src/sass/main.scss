@@ -1,12 +1,93 @@
 .main {
+    max-width: 500px;
     background {
         color: #fafafa;
     }
 }
 
-.filterlink-active {
-    & a {
-        color: red;
+.form-fileupload {
+    text-align: center;
+}
+
+.filterable {
+    position: relative;
+    
+    & .form-fileupload {
+        
+        position: absolute;
+        top: 30%;
+        left: 100px;
+        opacity: 0;
+        text-align: center;
+        transition: 1s opacity;
+
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        padding: 15px;
+        width: 270px;
+    }
+
+    &:hover {
+        & .form-fileupload {
+            opacity: 0.9;
+        }
     }
 }
+
+.filters-list {
+    & ul {
+        list-style: none;
+
+        & a {
+           text-decoration: none; 
+        }
+
+        & .filterlink {
+            &.filterlink-active {
+                & a {
+                    color: red;
+                }
+            }   
+        }
+    }
+}
+
+.filters-container {
+    display: flex;
+    justify-content: space-between;
+
+    & .filters-list {
+        flex: 1
+    }
+
+    & .filters-settings {
+        flex: 3;
+        max-width: 330px;
+    }
+}
+
+.filters-settings {
+    & label {
+        display: inline-block;
+        width: 120px;
+        margin-right: 10px;
+        text-align: right;
+    }
+
+    & input {
+        width: 120px;
+    }
+
+    .settings-svg {
+
+        & .svg-upload {
+            display: flex;
+
+            & .form-fileupload {
+                width: 125px;
+            }
+        }
+    }
+}
+
        

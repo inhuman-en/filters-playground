@@ -77,14 +77,14 @@ class SVGUrl extends React.Component {
     let values = this.parseValues();
 
     return (
-      <div>
-        <div>
-          {values.fileUrl || <span>Choose file:</span> }<UploadForm onFormSubmit={this.props.onFormSubmit}/>
+      <section class="settings-svg">
+        <div class="svg-upload">
+          {values.fileUrl || <label>Choose file:</label> }<UploadForm onFormSubmit={this.props.onFormSubmit}/>
         </div>
         <div>
-          <span>Filter element Id:</span> <input type="text" value={values.elementId} onChange={this.onElementIdChange.bind(this)}/>
+          <label>Filter element Id:</label> <input type="text" value={values.elementId} onChange={this.onElementIdChange.bind(this)}/>
         </div>
-      </div>
+      </section>
     );
   }
 }

@@ -19,9 +19,9 @@ export default class Brightness extends React.Component {
 
   render() {
     return (
-      <div>
-        <span>Amount, %:</span> <input type="number" min="0" value={this.parsePercent()} onChange={this.onPercentChange.bind(this)}/>
-      </div>
+      <section>
+        <label>Amount, %:</label> <input type="number" min="0" value={this.parsePercent()} onChange={this.onPercentChange.bind(this)}/>
+      </section>
     );
   }
 }

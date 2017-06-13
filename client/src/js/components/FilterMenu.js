@@ -9,10 +9,10 @@ export default class FilterMenu extends React.Component {
             null;
 
         return (
-            <section className="filters">
+            <section class="filters-list">
                     <ul>
                         {this.props.filterList
-                            .map((f, i, arr) => <li class={filterType === f.filterType ? "filterlink-active" : ""} key={i}>
+                            .map((f, i, arr) => <li class={filterType === f.filterType ? "filterlink filterlink-active" : "filterlink"} key={i}>
                                     <Link
                                         to={ {pathname: `f/${f.filterType}`,
                                         

@@ -47,7 +47,7 @@
   },
   "scripts": {
     "client": "webpack --watch",
-    "start": "set NODE_ENV=development&nodemon ./bin/www"
+    "server": "set NODE_ENV=development&nodemon ./bin/www"
   },
   "author": "inhuman",
   "license": "ISC"

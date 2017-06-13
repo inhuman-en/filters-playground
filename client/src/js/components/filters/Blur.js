@@ -20,9 +20,9 @@ export default class Blur extends React.Component {
 
   render() {
     return (
-      <div>
-        <span>Radius, px:</span> <input type="number" min="0" max="2000" value={this.parseRadius()} onChange={this.onRadiusChange.bind(this)}/>
-      </div>
+      <section class="settings-blur">
+        <label>Radius, px:</label> <input type="number" min="0" value={this.parseRadius()} onChange={this.onRadiusChange.bind(this)}/>
+      </section>
     );
   }
 }

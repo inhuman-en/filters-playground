@@ -48,9 +48,9 @@ class FilterSettings extends React.Component {
         }
 
         return (
-            <div>
+            <section class="filters-settings">
                 <FilterComponent.default filterData={ this.getFilterData(filterType) } onFilterChange={ this.props.onFilterChange } />
-            </div>
+            </section >
             );
     }
 }

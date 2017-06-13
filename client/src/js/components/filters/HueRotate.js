@@ -18,10 +18,10 @@ export default class HueRotate extends React.Component {
 
   render() {
     return (
-      <div>
+      <section>
         {/*todo: some kind of radial input*/}
-        <span>Angle, deg:</span> <input type="number" min="0" max="360" value={this.parseRadius()} onChange={this.onRadiusChange.bind(this)}/>
-      </div>
+        <label>Angle, deg:</label> <input type="number" min="0" max="360" value={this.parseRadius()} onChange={this.onRadiusChange.bind(this)}/>
+      </section>
     );
   }
 }

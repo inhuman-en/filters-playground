@@ -9,7 +9,7 @@ class UploadForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit.bind(this)}>
+            <form class="form-fileupload" onSubmit={this.onFormSubmit.bind(this)}>
                 <div>
                     <input type="file" name="img" accept="image/*"/>
                 </div>

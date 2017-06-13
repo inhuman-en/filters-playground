@@ -99,20 +99,20 @@ export default class DropShadow extends React.Component {
   render() {
     let values = this.parseValues();
     return (
-      <div>
-        <div>
-          <span>Offset X, px:</span> <input type="number" min="0" value={values.offsetX} onChange={this.onOffsetXChange.bind(this)}/>
-        </div>
-        <div>
-          <span>OffsetY, px:</span> <input type="number" min="0" value={values.offsetY} onChange={this.onOffsetYChange.bind(this)}/>
-        </div>
-        <div>
-          <span>Blur radius, px:</span> <input type="number" min="0" value="0" value={values.blurRadius} onChange={this.onBlurRadiusChange.bind(this)}/>
-        </div>
-        <div>
-          <span>Color:</span> <input type="color" value={values.color} onChange={this.onColorChange.bind(this)}/>
-        </div>
-      </div>
+      <section>
+        <section>
+          <label>Offset X, px:</label> <input type="number" min="0" value={values.offsetX} onChange={this.onOffsetXChange.bind(this)}/>
+        </section>
+        <section>
+          <label>OffsetY, px:</label> <input type="number" min="0" value={values.offsetY} onChange={this.onOffsetYChange.bind(this)}/>
+        </section>
+        <section>
+          <label>Blur radius, px:</label> <input type="number" min="0" value="0" value={values.blurRadius} onChange={this.onBlurRadiusChange.bind(this)}/>
+        </section>
+        <section>
+          <label>Color:</label> <input type="color" value={values.color} onChange={this.onColorChange.bind(this)}/>
+        </section>
+      </section>
     );
   }
 }
