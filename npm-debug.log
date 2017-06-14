@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'test' ]
+2 info using npm@3.10.10
+3 info using node@v7.2.1
+4 verbose run-script [ 'pretest', 'test', 'posttest' ]
+5 info lifecycle filter-playground@0.0.1~pretest: filter-playground@0.0.1
+6 silly lifecycle filter-playground@0.0.1~pretest: no script for pretest, continuing
+7 info lifecycle filter-playground@0.0.1~test: filter-playground@0.0.1
+8 verbose lifecycle filter-playground@0.0.1~test: unsafe-perm in lifecycle true
+9 verbose lifecycle filter-playground@0.0.1~test: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\projects\filters-playground\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\Program Files\Git\cmd;D:\Install\curl_7_50_2_openssl_nghttp2_x64;C:\Windows\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\nodejs\;D:\Program Files\MongoDB\Server\3.4\bin;C:\Program Files (x86)\Skype\Phone\;D:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\Inhuman\AppData\Roaming\npm
+10 verbose lifecycle filter-playground@0.0.1~test: CWD: D:\projects\filters-playground
+11 silly lifecycle filter-playground@0.0.1~test: Args: [ '/d /s /c', 'karma start karma.conf.js' ]
+12 silly lifecycle filter-playground@0.0.1~test: Returned: code: 1  signal: null
+13 info lifecycle filter-playground@0.0.1~test: Failed to exec test script
+14 verbose stack Error: filter-playground@0.0.1 test: `karma start karma.conf.js`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:885:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid filter-playground@0.0.1
+16 verbose cwd D:\projects\filters-playground
+17 error Windows_NT 6.1.7601
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "test"
+19 error node v7.2.1
+20 error npm  v3.10.10
+21 error code ELIFECYCLE
+22 error filter-playground@0.0.1 test: `karma start karma.conf.js`
+22 error Exit status 1
+23 error Failed at the filter-playground@0.0.1 test script 'karma start karma.conf.js'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the filter-playground package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     karma start karma.conf.js
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs filter-playground
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls filter-playground
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

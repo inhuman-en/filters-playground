@@ -37,6 +37,12 @@
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "jasmine": "^2.5.3",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-webpack": "^2.0.3",
     "node-sass": "^4.3.0",
     "nodemon": "^1.11.0",
     "sass-loader": "^4.1.1",
@@ -47,7 +53,8 @@
   },
   "scripts": {
     "client": "webpack --watch",
-    "server": "set NODE_ENV=development&nodemon ./bin/www"
+    "server": "set NODE_ENV=development&nodemon ./bin/www",
+    "test": "karma start karma.conf.js"
   },
   "author": "inhuman",
   "license": "ISC"
