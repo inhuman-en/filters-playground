@@ -7,7 +7,7 @@ script:
   - npm run test
   - npm run build
 env:
-  - NODE_ENV=test
+  - NODE_ENV=production
 before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
