@@ -1,12 +1,39 @@
+let path = require('path');
 let debug = process.env.NODE_ENV !== "production";
 let webpack = require('webpack');
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
+let ManifestPlugin = require("webpack-manifest-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 //ExtractTextPlugin is meant for production usage
 //thus, emitted css DONT go in the output when build is run by WDS
 //let extractCSS = new ExtractTextPlugin('/styles-vendor.css');
-let extractSASS = new ExtractTextPlugin('/styles-build.css');
+let manifest = new ManifestPlugin({
+    fileName: 'build-manifest.json'
+});
+let extractSASS = new ExtractTextPlugin({
+    filename: "styles.[chunkhash].css"
+});
+let commons = new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'vendor.[chunkhash].min.js',
+    minChunks: function(module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+    }
+});
+let clean = new CleanWebpackPlugin("public/*.*", {
+    verbose: false
+});
 
-let path = require('path');
+let define = new webpack.DefinePlugin({
+    'process.env': {
+        NODE_ENV: JSON.stringify('production')
+    }
+});
+let uglify = new webpack
+    .optimize
+    .UglifyJsPlugin({})
 
 module.exports = {
     context: path.join(__dirname),
@@ -15,9 +42,9 @@ module.exports = {
         : null,
     entry: "./client/src/js/main.js",
     output: {
-        path: __dirname + "/public/",
+        path: path.resolve(__dirname, 'public'),
         publicPath: "/",
-        filename: "scripts.min.js"
+        filename: "scripts.[chunkhash].min.js"
     },
     module: {
         rules: [
@@ -34,15 +61,11 @@ module.exports = {
                             plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties']
                         }
                     }
-                ]   
-
-
-
+                ]
             },
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
-                    filename: "styles-build.css",
                     fallback: "style-loader",
                     use: ["css-loader", "sass-loader"]
                 })
@@ -59,18 +82,8 @@ module.exports = {
     },
 
     plugins: debug
-        ? [extractSASS]
-        : [
-            extractSASS,
-            new webpack.DefinePlugin({
-                'process.env': {
-                    NODE_ENV: JSON.stringify('production')
-                }
-            }),
-            new webpack
-                .optimize
-                .UglifyJsPlugin({})
-        ],
+        ? [commons, clean, manifest, extractSASS]
+        : [commons, clean, manifest, extractSASS, define, uglify],
     devServer: {
         host: "localhost",
         port: 9000,
