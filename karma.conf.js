@@ -1,6 +1,3 @@
-var webpackConfig = require('./webpack.config.js');
-webpackConfig.entry = {};
-
 module.exports = function (config) {
   var settings = {
 
@@ -24,7 +21,7 @@ module.exports = function (config) {
         'test/**/*.test.js': ['webpack']
     },
 
-    webpack: webpackConfig,
+    webpack: {},
 
     webpackMiddleware: {
         // webpack-dev-middleware configuration
