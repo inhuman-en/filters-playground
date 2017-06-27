@@ -33,7 +33,7 @@ let define = new webpack.DefinePlugin({
 });
 let uglify = new webpack
     .optimize
-    .UglifyJsPlugin({})
+    .UglifyJsPlugin({});
 
 module.exports = {
     context: path.join(__dirname),

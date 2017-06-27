@@ -11,7 +11,8 @@
 
 .filterable {
     position: relative;
-    
+    min-height: 250px;
+
     & .form-fileupload {
         
         position: absolute;
@@ -27,7 +28,13 @@
         width: 270px;
     }
 
-    &:hover {
+    &.no-img {
+        & .form-fileupload {
+            opacity: 1;
+        }
+    }
+
+    &.has-img:hover {
         & .form-fileupload {
             opacity: 0.9;
         }

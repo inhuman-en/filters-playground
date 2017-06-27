@@ -28,9 +28,10 @@ const mapDispatchToProps = (dispatch) => {
 class Filterable extends React.Component { 
     render() {
         let imageSrc = this.props.imageSrc;
+        let cls = imageSrc ? "filterable has-img" : "filterable no-img";
 
         return (
-            <section class="filterable">
+            <section class={cls}>
                 {/*todo: media-based img size*/}
                 {imageSrc ? 
                 <img style={{filter: this.props.cssFilter}} width="500" src={imageSrc} alt="Filter me!"/> : ""}
