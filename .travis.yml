@@ -9,7 +9,6 @@ script:
 env:
   - NODE_ENV=test
 before_install:
-  - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 deploy:
@@ -17,3 +16,5 @@ deploy:
   app: cssfp
   api_key:
     secure: "6a69b3d7-62c5-4c26-9049-ab33bbd6f24e"
+addons:
+  chrome: stable
