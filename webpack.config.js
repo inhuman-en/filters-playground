@@ -40,7 +40,7 @@ module.exports = {
     context: path.join(__dirname),
     devtool: debug
         ? "inline-sourcemap"
-        : null,
+        : false,
     entry: "./client/src/js/main.js",
     output: {
         path: path.resolve(__dirname, 'public'),
