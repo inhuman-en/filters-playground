@@ -1,5 +1,6 @@
 let path = require('path');
 let debug = process.env.NODE_ENV !== "production";
+let test = process.env.NODE_ENV === "test";
 let webpack = require('webpack');
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let ManifestPlugin = require("webpack-manifest-plugin");
@@ -81,9 +82,16 @@ module.exports = {
         ]
     },
 
-    plugins: debug
-        ? [commons, clean, manifest, extractSASS]
-        : [commons, clean, manifest, extractSASS, define, uglify],
+    plugins: (function () {
+
+        if (test) {
+            return [clean, manifest, extractSASS];
+        } else if (debug) {
+            return [commons, clean, manifest, extractSASS];
+        }
+
+        return [commons, clean, manifest, extractSASS, define, uglify];
+    })(),
     devServer: {
         host: "localhost",
         port: 9000,

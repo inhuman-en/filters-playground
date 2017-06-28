@@ -56,7 +56,7 @@
   "scripts": {
     "client": "webpack --watch",
     "server": "set NODE_ENV=development&nodemon ./bin/www",
-    "test": "karma start karma.conf.js",
+    "test": "set NODE_ENV=test&karma start karma.conf.js",
     "build": "webpack",
     "start": "node ./bin/www",
     "heroku-postbuild": "webpack"

@@ -1,3 +1,5 @@
+var webpackConfig = require("./webpack.config.js");
+
 module.exports = function (config) {
   var settings = {
 
@@ -9,7 +11,9 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
-    files: ['test/**/*.test.js'],
+    files: [
+      'test/**/*.test.js'
+      ],
 
     // list of files to exclude
     exclude: [],
@@ -21,7 +25,7 @@ module.exports = function (config) {
         'test/**/*.test.js': ['webpack']
     },
 
-    webpack: require("./webpack.config.js"),
+    webpack: webpackConfig,
 
     webpackMiddleware: {
         // webpack-dev-middleware configuration
@@ -53,7 +57,7 @@ module.exports = function (config) {
 
     // start these browsers available browser launchers:
     // https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome'],
 
     // Continuous Integration mode if true, Karma captures browsers, runs the tests
     // and exits
