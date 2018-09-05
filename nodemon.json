@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "ignore": ["public/vendor.*.js", "public/scripts.*.js", "public/styles.*.css", "views/*", "client/*"]
+}
