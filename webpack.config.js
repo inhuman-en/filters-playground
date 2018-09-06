@@ -1,100 +1,101 @@
-let path = require('path');
-let debug = process.env.NODE_ENV !== "production";
-let test = process.env.NODE_ENV === "test";
-let webpack = require('webpack');
-let ExtractTextPlugin = require("extract-text-webpack-plugin");
-let ManifestPlugin = require("webpack-manifest-plugin");
+const ManifestPlugin = require('webpack-manifest-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+let path = require('path');
+let development = process.env.NODE_ENV !== 'production';
 
-//ExtractTextPlugin is meant for production usage
-//thus, emitted css DONT go in the output when build is run by WDS
-//let extractCSS = new ExtractTextPlugin('/styles-vendor.css');
 let manifest = new ManifestPlugin({
     fileName: 'build-manifest.json'
 });
-let extractSASS = new ExtractTextPlugin({
-    filename: "styles.[chunkhash].css"
-});
-let commons = new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    filename: 'vendor.[chunkhash].min.js',
-    minChunks: function(module) {
-        // this assumes your vendor imports exist in the node_modules directory
-        return module.context && module.context.indexOf('node_modules') !== -1;
-    }
-});
-let clean = new CleanWebpackPlugin("public/*.*", {
+
+let clean = new CleanWebpackPlugin(['public/*.*'], {
     verbose: false
 });
 
-let define = new webpack.DefinePlugin({
-    'process.env': {
-        NODE_ENV: JSON.stringify('production')
-    }
-});
-let uglify = new webpack
-    .optimize
-    .UglifyJsPlugin({});
-
 module.exports = {
+    mode: development ? 'development' : 'production',
     context: path.join(__dirname),
-    devtool: debug
-        ? "inline-sourcemap"
-        : false,
-    entry: "./client/src/js/main.js",
+    devtool: development ? 'inline-sourcemap' : false,
+    entry: './client/src/js/main.js',
     output: {
         path: path.resolve(__dirname, 'public'),
-        publicPath: "/",
-        filename: "scripts.[chunkhash].min.js"
+        publicPath: '/',
+        filename: 'scripts.[chunkhash].min.js'
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'async',
+            minSize: 30000,
+            maxSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
     },
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        query: {
-                            presets: [
-                                'react', 'es2015', 'stage-0'
-                            ],
-                            plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties']
-                        }
-                    }
-                ]
+                exclude: /(node_modules)/,
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                useBuiltIns: 'entry'
+                            }
+                        ],
+                        [
+                            '@babel/preset-react',
+                            {
+                                development
+                            }
+                        ]
+                    ],
+                    plugins: [
+                        'react-html-attrs',
+                        '@babel/proposal-class-properties'
+                    ]
+                }
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader", "sass-loader"]
-                })
-            }, {
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
                 test: /\.(jpe?g|png|gif|svg|eot|ttf|woff|woff2)$/i,
                 use: [
                     {
-                        loader: "file-loader?name=[name].[ext]"
+                        loader: 'file-loader?name=[name].[ext]'
                     }
                 ]
-
             }
         ]
     },
-
-    plugins: (function () {
-
-        if (test) {
-            return [clean, manifest, extractSASS];
-        } else if (debug) {
-            return [commons, clean, manifest, extractSASS];
-        }
-
-        return [commons, clean, manifest, extractSASS, define, uglify];
-    })(),
-    devServer: {
-        host: "localhost",
-        port: 9000,
-        contentBase: __dirname + "/build"
-    }
+    plugins: [clean, manifest, new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: "[name].[chunkhash].css",
+        chunkFilename: "styles.[chunkhash].css"
+      })]
 };
