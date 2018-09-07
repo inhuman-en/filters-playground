@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class FilterMenu extends React.Component {
     
@@ -16,7 +17,7 @@ export default class FilterMenu extends React.Component {
                                     <Link
                                         to={ {pathname: `f/${f.filterType}`,
                                         
-                                        state: { filterConfig: f } } }>{f.displayName.substr(0, 3)}
+                                        state: { filterConfig: f } } }><FontAwesomeIcon icon={f.icon} />
                                     </Link>
                                 </li>)}
                     </ul>

@@ -1,58 +1,68 @@
 //todo: split (file per reeducer)
-import { combineReducers } from "redux";
-import * as actions from "./actions";
+import { combineReducers } from 'redux';
+import * as actions from './actions';
 
 const filterList = [
     {
-        displayName: "Blur",
-        filterType: "blur",
-        component: "Blur"
+        displayName: 'Blur',
+        filterType: 'blur',
+        component: 'Blur',
+        icon: 'tint'
     },
     {
-        displayName: "Brightness",
-        filterType: "brightness",
-        component: "Brightness"
+        displayName: 'Brightness',
+        filterType: 'brightness',
+        component: 'Brightness',
+        icon: 'sun'
     },
     {
-        displayName: "Contrast",
-        filterType: "contrast",
-        component: "Contrast"
+        displayName: 'Contrast',
+        filterType: 'contrast',
+        component: 'Contrast',
+        icon: 'adjust'
     },
     {
-        displayName: "Drop shadow",
-        filterType: "drop-shadow",
-        component: "DropShadow"
+        displayName: 'Drop shadow',
+        filterType: 'drop-shadow',
+        component: 'DropShadow',
+        icon: 'clone'
     },
     {
-        displayName: "Grayscale",
-        filterType: "grayscale",
-        component: "Grayscale"
+        displayName: 'Grayscale',
+        filterType: 'grayscale',
+        component: 'Grayscale',
+        icon: 'pencil-alt'
     },
     {
-        displayName: "Hue rotate",
-        filterType: "hue-rotate",
-        component: "HueRotate"
+        displayName: 'Hue rotate',
+        filterType: 'hue-rotate',
+        component: 'HueRotate',
+        icon: 'palette'
     },
     {
-        displayName: "Invert",
-        filterType: "invert",
-        component: "Invert"
+        displayName: 'Invert',
+        filterType: 'invert',
+        component: 'Invert',
+        icon: 'sync-alt'
     },
 
     {
-        displayName: "Opacity",
-        filterType: "opacity",
-        component: "Opacity"
+        displayName: 'Opacity',
+        filterType: 'opacity',
+        component: 'Opacity',
+        icon: 'eraser'
     },
     {
-        displayName: "Saturate",
-        filterType: "saturate",
-        component: "Saturate"
+        displayName: 'Saturate',
+        filterType: 'saturate',
+        component: 'Saturate',
+        icon: 'thermometer-three-quarters'
     },
     {
-        displayName: "SVG",
-        filterType: "url",
-        component: "SVGUrl"
+        displayName: 'SVG',
+        filterType: 'url',
+        component: 'SVGUrl',
+        icon: 'file-upload'
     }
 ];
 
@@ -68,9 +78,7 @@ function filterListReducer(state = [], action) {
 function activeFiltersReducer(state = [], action) {
     switch (action.type) {
         case actions.FILTER_CHANGE:
-            let newActiveFilters = state.filter(
-                f => f.filterType !== action.filterType
-            );
+            let newActiveFilters = state.filter(f => f.filterType !== action.filterType);
 
             newActiveFilters.push({
                 value: action.value,
@@ -80,18 +88,13 @@ function activeFiltersReducer(state = [], action) {
             return newActiveFilters;
         //todo: this is a duplication of a filter component logic
         case actions.URL_FILTER_UPLOAD_SUCCESS:
-            let filters = state.filter(
-                    f => f.filterType !== "url"
-                ),
-                currentUrlFilter = state.filter(
-                    f => f.filterType === "url"
-                )[0],
-                elementId = currentUrlFilter ? currentUrlFilter.value.split("#")[1] :
-                ""
+            let filters = state.filter(f => f.filterType !== 'url'),
+                currentUrlFilter = state.filter(f => f.filterType === 'url')[0],
+                elementId = currentUrlFilter ? currentUrlFilter.value.split('#')[1] : '';
 
             filters.push({
                 value: `${action.fileUrl}#${elementId}`,
-                filterType: "url"
+                filterType: 'url'
             });
 
             return filters;
@@ -100,7 +103,7 @@ function activeFiltersReducer(state = [], action) {
     }
 }
 
-function filterableReducer (state = {}, action) {
+function filterableReducer(state = {}, action) {
     switch (action.type) {
         case actions.FILTERABLE_UPLOAD_START:
             return Object.assign({}, state, {
@@ -109,11 +112,11 @@ function filterableReducer (state = {}, action) {
                 errorMsg: null
             });
         case actions.FILTERABLE_UPLOAD_SUCCESS:
-        return Object.assign({}, state, {
-            isUploading: false,
-            imageSrc: action.imageSrc,
-            errorMsg: null
-        });
+            return Object.assign({}, state, {
+                isUploading: false,
+                imageSrc: action.imageSrc,
+                errorMsg: null
+            });
         case actions.FILTERABLE_UPLOAD_FAILURE:
             return Object.assign({}, state, {
                 isUploading: false,
@@ -121,7 +124,6 @@ function filterableReducer (state = {}, action) {
                 errorMsg: action.errorMsg
             });
         case actions.FILTERABLE_GET_PERSISTED:
-           
             return Object.assign({}, state, {
                 isUploading: false,
                 imageSrc: action.imageSrc,
